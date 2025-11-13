@@ -1,3 +1,7 @@
+---
+layout: default
+title: Building Inventory Visualizations
+---
 # Building Inventory Visualizations
 
 <p>
