@@ -4,7 +4,53 @@
     <title>This is the title of the webpage!</title>
   </head>
   <body>
-    <!-- this is just a comment for IS445 Fall 2024 BCU/BCG -->
-    <p>This is an example paragraph for Fa2024-ID6398. Anything in the <strong>body</strong> tag will appear on the page, just like this <strong>p</strong> tag and its contents.</p>
+<h1>Building Inventory Visualizations</h1>
+
+<p>
+  <a href="https://raw.githubusercontent.com/UIUC-iSchool-DataViz/is445_data/main/building_inventory.csv" target="_blank"><strong>The Data</strong></a>
+  &nbsp;|&nbsp;
+  <a href="https://github.com/Lwashor02/Lwashor02.github.io/blob/main/Workbook.ipynb" target="_blank"><strong>The Analysis</strong></a>
+</p>
+
+<hr>
+
+<h2>Visualization 1: Buildings by Decade and County</h2>
+
+<div id="vis1"></div>
+
+<p><strong>Write-up for Visualization 1:</strong><br>
+My first visualization is a heatmap showing how many state-managed buildings were constructed in each Illinois county across different decades. In my Python notebook, I converted the “Year Constructed” column to numeric, created a “Decade” column by binning the years into 10-year intervals, and used a groupby over County and Decade to count the buildings in each combination. I used counties as a nominal y-axis, decades as an ordinal x-axis, and encoded building counts using a sequential blue color scale. I chose a heatmap because it makes it easy to see patterns across both time and geography at once. This design highlights major periods of construction growth, such as the mid-to-late 20th century, and also reveals counties with consistently lower construction activity.
+</p>
+
+<hr>
+
+<h2>Visualization 2: Agencies by Number of Buildings in a County</h2>
+
+<div id="vis2"></div>
+
+<p><strong>Write-up for Visualization 2:</strong><br>
+My second visualization focuses on which state agencies manage the most buildings within a selected county. To create this chart, I grouped the dataset by County and Agency Name and counted the number of buildings in each group. I used a horizontal bar chart where the x-axis represents the building count (quantitative) and the y-axis lists agency names (nominal). Horizontal bars improve readability because many agency names are long. I colored the bars by agency primarily for visual distinction, not to encode an additional variable. This visualization helps viewers quickly compare how agency responsibility differs across counties.
+</p>
+
+<hr>
+
+<h2>Interactivity</h2>
+
+<p>
+I added interactivity to the second visualization using a dropdown menu labeled “County.” This widget is bound to the County field, and when a user selects a county, the bar chart updates to show only agencies that have buildings in that specific county. This makes the chart cleaner and easier to interpret because it avoids showing all counties at once, and the viewer can explore differences between counties with a single click.
+</p>
+
+<!-- Vega scripts and embeds -->
+<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+<script type="text/javascript">
+  // Visualization 1
+  vegaEmbed('#vis1', 'vis_buildings_decade_county.json');
+
+  // Visualization 2
+  vegaEmbed('#vis2', 'vis_buildings_agency_by_county.json');
+</script>
   </body>
 </html>
